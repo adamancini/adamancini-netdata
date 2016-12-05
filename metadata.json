@@ -7,6 +7,7 @@
       "source": "https://bitbucket.org/adamancini/netdata",
       "project_page": "https://bitbucket.org/adamancini/netdata",
       "issues_url": "https://bitbucket.org/adamancini/netdata/issues",
+      "tags": [ "netdata", "monitoring" ],
       "operatingsystem_support": [
         { "operatingsystem": "Ubuntu",
           "operatingsystemrelease":
