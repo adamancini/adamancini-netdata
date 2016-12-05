@@ -3,7 +3,7 @@
       "version": "0.0.1",
       "author": "Ada Mancini",
       "license": "Apache-2.0",
-      "summary": "A module for installing & configuring the netdata service",
+      "summary": "A Puppet 4 module for installing & configuring the netdata service.",
       "source": "https://bitbucket.org/adamancini/adamancini-netdata",
       "project_page": "https://bitbucket.org/adamancini/adamancini-netdata",
       "issues_url": "https://bitbucket.org/adamancini/adamancini-netdata",
