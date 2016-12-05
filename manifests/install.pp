@@ -44,7 +44,7 @@ class netdata::install inherits netdata {
   # }
 
   exec { "Download netdata-${netdata::release_version}":
-    command => "wget -qO- ${installation_source} | tar xvz -C /root/netdata-${netdata::release_version}",
+    command => "wget -qO- ${installation_source} | tar xvz -C /root/",
     creates => "/root/netdata-${netdata::release_version}",
     before  => Exec['Install netdata']
   }
