@@ -1,5 +1,4 @@
-class netdata::install inherits netdata (
-) {
+class netdata::install inherits netdata {
 
   $build_deps = [
     'autoconf-archive',
