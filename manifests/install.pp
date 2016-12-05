@@ -1,7 +1,5 @@
-class netdata::install (
-  String $release_version,
-  String $install_dir_root,
-  ) {
+class netdata::install inherits netdata (
+) {
 
   $build_deps = [
     'autoconf-archive',
@@ -34,18 +32,18 @@ class netdata::install (
   ensure_packages( $build_deps, {'ensure' => 'present'} )
   ensure_packages( $plugin_deps, {'ensure' => 'present'} )
 
-  archive { "/tmp/netdata-${release_version}.tar.gz":
+  archive { "/tmp/netdata-${netdata::release_version}.tar.gz":
     ensure       => present,
     extract      => true,
     extract_path => '/tmp',
-    source       => "https://github.com/firehol/netdata/releases/download/v${release_version}/netdata-${release_version}.tar.gz",
-    creates      => "/tmp/netdata-${release_version}",
+    source       => "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz",
+    creates      => "/tmp/netdata-${netdata::release_version}",
     cleanup      => true,
     before       => Exec['Install netdata']
   }
 
   exec { 'Install netdata':
-    command => "/tmp/netdata-${release_version}/netdata-installer.sh --install ${install_dir_root}",
+    command => "/tmp/netdata-${netdata::release_version}/netdata-installer.sh --install ${netdata::install_dir_root}",
     creates => '/etc/netdata/netdata.conf',
   }
 }
