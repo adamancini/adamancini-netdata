@@ -4,9 +4,9 @@
       "author": "Ada Mancini",
       "license": "Apache-2.0",
       "summary": "A module for installing & configuring the netdata service",
-      "source": "https://bitbucket.org/adamancini/netdata",
-      "project_page": "https://bitbucket.org/adamancini/netdata",
-      "issues_url": "https://bitbucket.org/adamancini/netdata/issues",
+      "source": "https://bitbucket.org/adamancini/adamancini-netdata",
+      "project_page": "https://bitbucket.org/adamancini/adamancini-netdata",
+      "issues_url": "https://bitbucket.org/adamancini/adamancini-netdata",
       "tags": [ "netdata", "monitoring" ],
       "operatingsystem_support": [
         { "operatingsystem": "Ubuntu",
