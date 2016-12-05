@@ -1,2 +1,4 @@
 netdata::release_version: '1.4.0'
 netdata::install_dir_root: '/opt'
+netdata::config_file_path: '/etc/netdata/netdata.conf'
+netdata::config_file_template: 'netdata/netdata.conf.erb'
