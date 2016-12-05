@@ -1,5 +1,7 @@
 class netdata::install inherits netdata {
 
+  $installation_source = "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz"
+
   $build_deps = [
     'autoconf-archive',
     'autoconf',
@@ -23,8 +25,8 @@ class netdata::install inherits netdata {
     'python-mysqldb',
     'python-psycopg2',
     'nodejs',
-    'lm_sensors',
-    'libmnl',
+    'lm-sensors',
+    'libmnl0',
     'netcat'
   ]
 
@@ -42,7 +44,7 @@ class netdata::install inherits netdata {
   # }
 
   exec { "Download netdata-${netdata::release_version}":
-    command => "wget https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz -O /root/netdata-${netdata::release_version}",
+    command => "wget -qO- ${installation_source} | tar xvz -C /root/netdata-${netdata::release_version}",
     creates => "/root/netdata-${netdata::release_version}",
     before  => Exec['Install netdata']
   }
