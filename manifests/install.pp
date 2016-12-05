@@ -31,15 +31,15 @@ class netdata::install inherits netdata {
   ensure_packages( $build_deps, {'ensure' => 'present'} )
   ensure_packages( $plugin_deps, {'ensure' => 'present'} )
 
-  archive { "/tmp/netdata-${netdata::release_version}.tar.gz":
-    ensure       => present,
-    extract      => true,
-    extract_path => '/tmp',
-    source       => "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz",
-    creates      => "/tmp/netdata-${netdata::release_version}",
-    cleanup      => true,
-    before       => Exec['Install netdata']
-  }
+  # archive { "/tmp/netdata-${netdata::release_version}.tar.gz":
+  #   ensure       => present,
+  #   extract      => true,
+  #   extract_path => '/tmp',
+  #   source       => "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz",
+  #   creates      => "/tmp/netdata-${netdata::release_version}",
+  #   cleanup      => true,
+  #   before       => Exec['Install netdata']
+  # }
 
   exec { "Download netdata-${netdata::release_version}":
     command => "wget https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz -O /root/netdata-${netdata::release_version}"
