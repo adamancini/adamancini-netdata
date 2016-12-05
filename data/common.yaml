@@ -1,0 +1,2 @@
+netdata::release_version: '1.4.0'
+netdata::install_dir: '/opt/netdata'
