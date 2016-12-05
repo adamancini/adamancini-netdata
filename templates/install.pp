@@ -1,9 +1,7 @@
 class netdata::install (
   String $release_version,
-  String $install_dir,
+  String $install_dir_root,
   ) {
-
-    include ::archive
 
   $build_deps = [
     'autoconf-archive',
@@ -47,6 +45,7 @@ class netdata::install (
   }
 
   exec { 'Install netdata':
-    command =>
+    command => "/tmp/netdata-${release_version}/netdata-installer.sh --install ${install_dir_root}",
+    creates => '/etc/netdata/netdata.conf',
   }
 }
