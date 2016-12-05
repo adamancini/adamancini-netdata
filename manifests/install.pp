@@ -1,6 +1,10 @@
 class netdata::install inherits netdata {
 
   $installation_source = "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz"
+  $install_dir = "${netdata::install_dir_root}/netdata"
+  $conf_dir = "${install_dir}/etc"
+  $usr_dir  = "${install_dir}/usr"
+  $var_dir  = "${install_dir}/var"
 
   $build_deps = [
     'autoconf-archive',
@@ -52,6 +56,6 @@ class netdata::install inherits netdata {
   exec { 'Install netdata':
     command => "/root/netdata-${netdata::release_version}/netdata-installer.sh --install ${netdata::install_dir_root}",
     cwd     => "/root/netdata-${netdata::release_version}",
-    creates => '/etc/netdata/netdata.conf',
+    creates => $conf_dir,
   }
 }

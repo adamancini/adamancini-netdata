@@ -1,7 +1,8 @@
 class netdata::config inherits netdata {
 
+  $conf_dir = "${netdata::install_dir_root}/netdata/etc"
   # stub
-  file { $netdata::config_file_path:
+  file { $conf_dir:
     ensure => present,
   }
 
