@@ -17,7 +17,7 @@ class netdata::install inherits netdata {
 
   # recommended packages for full functionality of netdata
   $plugin_deps = [
-    'tc',
+    'iproute2', # provides the 'tc' application
     'python',
     'python-yaml',
     'python-mysqldb',
