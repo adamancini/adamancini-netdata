@@ -41,8 +41,14 @@ class netdata::install inherits netdata {
     before       => Exec['Install netdata']
   }
 
+  exec { "Download netdata-${netdata::release_version}":
+    command => "wget https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz -O /root/netdata-${netdata::release_version}"
+    creates => "/root/netdata-${netdata::release_version}",
+    before  => Exec['Install netdata']
+  }
+
   exec { 'Install netdata':
-    command => "/tmp/netdata-${netdata::release_version}/netdata-installer.sh --install ${netdata::install_dir_root}",
+    command => "/root/netdata-${netdata::release_version}/netdata-installer.sh --install ${netdata::install_dir_root}",
     creates => '/etc/netdata/netdata.conf',
   }
 }
