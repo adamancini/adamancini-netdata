@@ -11,4 +11,8 @@ class netdata (
   contain netdata::config
   contain netdata::service
 
+  Class['::netdata::install'] ->
+  Class['::netdata::config'] ~>
+  Class['::netdata::service']
+
 }
