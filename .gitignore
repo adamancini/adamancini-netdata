@@ -1,0 +1,10 @@
+pkg/
+Gemfile.lock
+vendor/
+spec/fixtures/manifests/
+spec/fixtures/modules/
+.vagrant/
+.bundle/
+coverage/
+log/
+.DS_Store
