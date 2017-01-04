@@ -1,0 +1,7 @@
+fixtures:
+  repositories:
+    stdlib:
+      repo: https://github.com/puppetlabs/puppetlabs-stdlib.git
+  symlinks:
+    netdata: "#{source_dir}"
+
