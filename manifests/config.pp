@@ -5,6 +5,4 @@ class netdata::config inherits netdata {
   file { $conf_dir:
     ensure => directory,
   }
-
-
 }
