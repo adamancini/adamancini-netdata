@@ -1,8 +1,6 @@
 class netdata::install inherits netdata {
 
   $installation_source = "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz"
-  $install_dir = "${netdata::install_dir_root}/netdata"
-  $conf_dir = "${install_dir}/etc/netdata"
 
   $build_deps = [
     'autoconf-archive',
@@ -32,18 +30,10 @@ class netdata::install inherits netdata {
     'netcat'
   ]
 
-  ensure_packages( $build_deps, {'ensure' => 'present'} )
-  ensure_packages( $plugin_deps, {'ensure' => 'present'} )
-
-  # archive { "/tmp/netdata-${netdata::release_version}.tar.gz":
-  #   ensure       => present,
-  #   extract      => true,
-  #   extract_path => '/tmp',
-  #   source       => "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz",
-  #   creates      => "/tmp/netdata-${netdata::release_version}",
-  #   cleanup      => true,
-  #   before       => Exec['Install netdata']
-  # }
+  if $netdata::install_dependencies == true {
+    ensure_packages( $build_deps, {'ensure' => 'present'} )
+    ensure_packages( $plugin_deps, {'ensure' => 'present'} )
+  }
 
   exec { "Download netdata-${netdata::release_version}":
     command => "/usr/bin/wget -qO- ${installation_source} | tar xvz -C /root/",
@@ -52,8 +42,8 @@ class netdata::install inherits netdata {
   }
 
   exec { 'Install netdata':
-    command => "/root/netdata-${netdata::release_version}/netdata-installer.sh --install ${netdata::install_dir_root}",
+    command => "/root/netdata-${netdata::release_version}/netdata-installer.sh",
     cwd     => "/root/netdata-${netdata::release_version}",
-    creates => $conf_dir,
+    creates => '/etc/netdata',
   }
 }
