@@ -1,20 +1,24 @@
 class netdata::config inherits netdata {
 
-  $conf_dir = '/etc/netdata'
-  $conf_file = "${conf_dir}/netdata.conf"
-  # stub
-  file { $conf_dir:
-    ensure => directory,
-    owner  => 'netdata',
-    group  => 'netdata',
-    mode   => '0755',
-    before => $conf_file,
-  }
+  if $netdata::config_manage == true {
 
-  file { $conf_file:
-    ensure => present,
-    owner  => 'netdata',
-    group  => 'netdata',
-    mode   => '0664',
+    file { $netdata::config_dir:
+      ensure => directory,
+      owner  => $netdata::service_name,
+      group  => $netdata::service_name,
+      mode   => '0755',
+      before => $netdata::config_file,
+    }
+
+    file { "${netdata::config_dir}/netdata.conf":
+      ensure => present,
+      owner  => $netdata::service_name,
+      group  => $netdata::service_name,
+      mode   => '0664',
+    }
+
+    validate_hash($netdata::config::options)
+    $ini_defaults = { 'path' => "${netdata::config_dir}/netdata.conf" }
+    create_ini_settings($netdata::config::options, $ini_defaults)
   }
 }
