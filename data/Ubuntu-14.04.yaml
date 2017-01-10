@@ -1,0 +1,2 @@
+netdata::service_provider: 'init.d'
+netdata::service_file: 'system/netdata-lsb'
