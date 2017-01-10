@@ -4,21 +4,6 @@ class netdata::config inherits netdata {
 
     notify { 'update netdata configuration': }
 
-    file { $netdata::config_dir:
-      ensure => directory,
-      owner  => $netdata::service_name,
-      group  => $netdata::service_name,
-      mode   => '0755',
-    }
-
-    file { $netdata::config_file:
-      ensure  => file,
-      owner   => $netdata::service_name,
-      group   => $netdata::service_name,
-      mode    => '0664',
-      require => File[$netdata::config_dir],
-    }
-
     validate_hash($netdata::options)
     $ini_defaults = {
       'path' => $netdata::config_file,

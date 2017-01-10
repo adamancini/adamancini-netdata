@@ -70,4 +70,19 @@ class netdata::install inherits netdata {
       notify {"Default is a noop": }
     }
   }
+
+  file { $netdata::config_dir:
+      ensure => directory,
+      owner  => $netdata::service_name,
+      group  => $netdata::service_name,
+      mode   => '0755',
+    }
+
+    file { $netdata::config_file:
+      ensure  => file,
+      owner   => $netdata::service_name,
+      group   => $netdata::service_name,
+      mode    => '0664',
+      require => File[$netdata::config_dir],
+    }
 }
