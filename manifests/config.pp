@@ -2,6 +2,8 @@ class netdata::config inherits netdata {
 
   if $netdata::config_manage == true {
 
+    notify { "update netdata configuration": }
+
     file { $netdata::config_dir:
       ensure => directory,
       owner  => $netdata::service_name,
