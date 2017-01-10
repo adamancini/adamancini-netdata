@@ -12,7 +12,7 @@ class netdata::config inherits netdata {
     }
 
     file { $netdata::config_file:
-      ensure  => present,
+      ensure  => file,
       owner   => $netdata::service_name,
       group   => $netdata::service_name,
       mode    => '0664',
