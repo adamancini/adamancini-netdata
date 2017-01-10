@@ -1,30 +1,47 @@
 netdata::release_version: '1.4.0'
-netdata::access_log: '/var/log/netdata/access.log'
-netdata::bind_to: '*'
-netdata::cache_dir: '/var/cache/netdata'
-netdata::config_dir: '/etc/netdata'
 netdata::config_file: 'netdata.conf'
+netdata::config_dir: '/etc/netdata'
+netdata::config_manage: true
 netdata::custom_registry_enabled: false
 netdata::custom_registry_hostname: ~
 netdata::custom_registry_to_announce: ~
-netdata::debug_flags: '0x00000000'
-netdata::debug_log: '/var/log/netdata/debug.log'
-netdata::disconnect_idle_after: '60'
-netdata::error_log: '/var/log/netdata/error.log'
-netdata::history: '3600'
 netdata::install_dependencies: true
 netdata::install_dir_root: ~
-netdata::listening_port: '19999'
-netdata::log_dir: '/var/log/netdata'
-netdata::memory_deduplication: true
-netdata::plugins_dir: '/usr/libexec/netdata/plugins.d'
-netdata::run_as_user: 'netdata'
 netdata::service_enable: true
-netdata::service_ensure: 'running'
+netdata::service_ensure: running
 netdata::service_manage: true
-netdata::service_name: 'netdata'
+netdata::service_name: netdata
 netdata::service_provider: ~
-netdata::update_every: '1'
-netdata::web_compression: true
-netdata::web_files_dir: '/usr/share/netdata/web'
-netdata::web_files_owner: 'netdata'
+
+netdata::config::options
+  global:
+    access log: '/var/log/netdata/access.log'
+    bind to: '*'
+    cache directory: '/var/cache/netdata'
+    config directory: '/etc/netdata'
+    debug flags: '0x00000000'
+    debug log: '/var/log/netdata/debug.log'
+    default port: 19999
+    disconnect idle web clients after seconds: 60
+    error log: '/var/log/netdata/error.log'
+    errors flood protection period: 1200
+    errors to trigger flood protection: 200
+    history: 3600
+    http port listen backlog: 100
+    home directory: '/var/cache/netdata'
+    lib directory: '/var/lib/netdata'
+    log directory: '/var/log/netdata'
+    memory deduplication (ksm): yes
+    memory mode: save
+    multi threaded web server: yes
+    plugins directory: '/usr/libexec/netdata/plugins.d'
+    run as user: netdata
+    update every: 1
+    web compression: true
+    web files directory: '/usr/share/netdata/web'
+    web files owner: netdata
+    web files group: netdata
+    respect web browser do not track policy: no
+    enable web responses gzip compression: yes
+    web compression strategy: default
+    web compression level: 3
