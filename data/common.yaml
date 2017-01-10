@@ -13,7 +13,7 @@ netdata::service_manage: true
 netdata::service_name: netdata
 netdata::service_provider: ~
 
-netdata::config::options
+netdata::config::options:
   global:
     access log: '/var/log/netdata/access.log'
     bind to: '*'
