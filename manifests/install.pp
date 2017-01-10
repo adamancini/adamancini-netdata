@@ -48,7 +48,7 @@ class netdata::install inherits netdata {
   }
 
   case $netdata::service_provider {
-    'init.d': {
+    'upstart': {
       exec { 'Install init.d service file':
         command => "cp /root/netdata/${netdata::service_file} ./netdata",
         cwd     => '/etc/init.d/',
