@@ -1,7 +1,7 @@
 class netdata (
   String $release_version,
   Stdlib::Absolutepath $config_dir,
-  Optional[Stdlib::Absolutepath] $config_file,
+  Stdlib::Absolutepath $config_file,
   Boolean $custom_registry_enabled,
   Optional[String] $custom_registry_hostname,
   Optional[String] $custom_registry_to_announce,
