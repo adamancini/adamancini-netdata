@@ -19,8 +19,8 @@ class netdata::config inherits netdata {
       require => File[$netdata::config_dir],
     }
 
-    validate_hash($netdata::config::options)
+    validate_hash($netdata::options)
     $ini_defaults = { 'path' => $netdata::config_file }
-    create_ini_settings($netdata::config::options, $ini_defaults)
+    create_ini_settings($netdata::options, $ini_defaults)
   }
 }

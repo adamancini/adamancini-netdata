@@ -13,6 +13,7 @@ class netdata (
   Boolean $service_manage,
   String $service_name,
   Optional[String] $service_provider,
+  Optional[Hash] $options,
   ) {
 
   contain netdata::install
