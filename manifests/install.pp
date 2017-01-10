@@ -71,18 +71,18 @@ class netdata::install inherits netdata {
     }
   }
 
-  file { $netdata::config_dir:
+  file { "netdata configuration directory":
     ensure => directory,
+    path   => $netdata::config_dir,
     owner  => $netdata::service_name,
     group  => $netdata::service_name,
     mode   => '0755',
-  }
-
-  file { $netdata::config_file:
-    ensure  => file,
-    owner   => $netdata::service_name,
-    group   => $netdata::service_name,
-    mode    => '0664',
-    require => File[$netdata::config_dir],
+  } ->
+  file { 'netdata config file':
+    ensure => file,
+    path   => $netdata::config_file,
+    owner  => $netdata::service_name,
+    group  => $netdata::service_name,
+    mode   => '0664',
   }
 }
