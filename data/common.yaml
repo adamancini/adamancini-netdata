@@ -1,7 +1,7 @@
 ---
 netdata::release_version: '1.4.0'
 netdata::config_dir: '/etc/netdata'
-netdata::config_file: "%{netdata::config_dir}/netdata.conf"
+netdata::config_file: /etc/netdata/netdata.conf"
 netdata::config_manage: true
 netdata::custom_registry_enabled: false
 netdata::custom_registry_hostname: ~
