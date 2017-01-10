@@ -1,3 +1,4 @@
+---
 netdata::release_version: '1.4.0'
 netdata::config_dir: '/etc/netdata'
 netdata::config_file: "%{netdata::config_dir}/netdata.conf"
