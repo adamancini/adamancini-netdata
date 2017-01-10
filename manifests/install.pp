@@ -46,4 +46,28 @@ class netdata::install inherits netdata {
     cwd     => "/root/netdata-${netdata::release_version}",
     creates => '/etc/netdata',
   }
+
+  case $netdata::service_provider {
+    'init.d': {
+      exec { 'Install init.d service file':
+        command => "cp /root/netdata/${netdata::service_file} ./netdata",
+        cwd     => '/etc/init.d/',
+        creates => '/etc/init.d/netdata',
+        before  => File['/etc/init.d/netdata'],
+      }
+
+      file { '/etc/init.d/netdata':
+        ensure => present,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0755',
+      }
+    }
+    'systemd': {
+      notify {"Systemd service file installed automatically": }
+    }
+    default: {
+      notify {"Default is a noop": }
+    }
+  }
 }
