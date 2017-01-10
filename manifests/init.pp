@@ -1,7 +1,9 @@
 class netdata (
   String $release_version,
-  Optional[String] $install_dir_root,
-) {
+  Boolean $service_manage,
+  Boolean $config_manage,
+  Boolean $install_dependencies,
+  ) {
 
   contain netdata::install
   contain netdata::config
