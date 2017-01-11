@@ -14,6 +14,10 @@ netdata::service_manage: true
 netdata::service_name: netdata
 netdata::service_provider: ~
 
+lookup_options:
+  netdata::options:
+    merge: deep
+
 netdata::options:
   global:
     access log: '/var/log/netdata/access.log'
