@@ -24,4 +24,5 @@ class netdata (
   Class['::netdata::install'] ->
   Class['::netdata::config'] ~>
   Class['::netdata::service']
+  Class['::netdata::webserver']
 }
