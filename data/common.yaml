@@ -13,6 +13,8 @@ netdata::service_ensure: running
 netdata::service_manage: true
 netdata::service_name: netdata
 netdata::service_provider: ~
+netdata::webserver_manage: true
+netdata::webserver_class: nginx
 
 lookup_options:
   netdata::options:
