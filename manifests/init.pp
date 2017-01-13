@@ -15,6 +15,7 @@ class netdata (
   Optional[String] $service_provider,
   Optional[Hash] $options,
   Boolean $webserver_manage,
+  Optional[String] $webserver_class
   ) {
 
   contain netdata::install
