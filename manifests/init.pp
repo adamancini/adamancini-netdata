@@ -12,6 +12,7 @@ class netdata (
   String $service_ensure,
   Boolean $service_manage,
   String $service_name,
+  String $service_file,
   Optional[String] $service_provider,
   Optional[Hash] $options,
   ) {
