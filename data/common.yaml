@@ -38,17 +38,17 @@ netdata::options:
     home directory: '/var/cache/netdata'
     lib directory: '/var/lib/netdata'
     log directory: '/var/log/netdata'
-    memory deduplication (ksm): yes
+    memory deduplication (ksm): 'yes'
     memory mode: save
-    multi threaded web server: yes
+    multi threaded web server: 'yes'
     plugins directory: '/usr/libexec/netdata/plugins.d'
     run as user: netdata
     update every: 1
-    web compression: true
+    web compression: 'yes'
     web files directory: '/usr/share/netdata/web'
     web files owner: netdata
     web files group: netdata
-    respect web browser do not track policy: no
-    enable web responses gzip compression: yes
+    respect web browser do not track policy: 'no'
+    enable web responses gzip compression: 'yes'
     web compression strategy: default
     web compression level: 3
