@@ -4,14 +4,16 @@ This Puppet module aims to install the netdata (http://my-netdata.io/) applicati
 
 I will attempt to make this module compatible with Ubuntu 14.04 and 16.04 and possibly expand OS support later.  Pull requests are welcome.
 
-Puppet 4 + hiera required.
+Puppet 4+, hiera required.
+PuppetDB highly recommended.
 
 ### What is this repository for? ###
 
 * Install the [netdata](https://netdata.firehol.org/) application - [project github](https://github.com/firehol/netdata)
-* Ubuntu 14.04, 1604
+* Ubuntu 14.04, 16.04
 * Puppet >= 4.3
 * Hiera
+* PuppetDB for charts support
 
 ### How do I get set up? ###
 

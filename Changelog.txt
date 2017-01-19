@@ -1,0 +1,5 @@
+Changelog
+
+0.0.1: Basic installation of netdata working on Ubuntu 14.04/16.04.  Download the package, install it, copy service file for upstart (systemd should happen automatically), and manage configuration file.
+
+0.0.2: Start work on custom facts for puppet, so puppet users can know what charts are available on the node.  e.g. to make custom dashboards.
