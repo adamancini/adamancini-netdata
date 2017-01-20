@@ -35,6 +35,10 @@ class netdata::install inherits netdata {
     ensure_packages( $plugin_deps, {'ensure' => 'present'} )
   }
 
+  if $netdata::install_jq == true {
+    ensure_packages( 'jq', {'ensure' => 'present'} )
+  }
+
   exec { "Download netdata-${netdata::release_version}":
     command => "/usr/bin/wget -qO- ${installation_source} | tar xvz -C /root/",
     creates => "/root/netdata-${netdata::release_version}",
