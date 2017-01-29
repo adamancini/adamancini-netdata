@@ -1,5 +1,5 @@
 ---
-netdata::release_version: '1.4.0'
+netdata::release_version: '1.5.0'
 netdata::config_dir: '/etc/netdata'
 netdata::config_file: '/etc/netdata/netdata.conf'
 netdata::config_manage: true
