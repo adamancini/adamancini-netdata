@@ -55,16 +55,17 @@ class netdata::install inherits netdata {
   case $::facts['service_provider'] {
     'upstart': {
       file { '/etc/init.d/netdata':
-        ensure => link,
-        source => '/opt/netdata/system/netdata-lsb',
-        target => '/etc/init.d/netdata',
+        ensure  => link,
+        source  => '/opt/netdata/system/netdata-lsb',
+        target  => '/etc/init.d/netdata',
+        require => Vcsrepo['/opt/netdata']
       }
     }
     'systemd': {
-      notify {"Systemd service file installed automatically": }
+      notify { 'Systemd service file installed automatically': }
     }
     default: {
-      notify {"Default is a noop": }
+      notify { 'Default is a noop': }
     }
   }
 
