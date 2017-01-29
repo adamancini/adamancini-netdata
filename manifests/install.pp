@@ -1,6 +1,6 @@
 class netdata::install inherits netdata {
 
-  $installation_source = "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz"
+  $installation_source = 'https://github.com/firehol/netdata.git'
 
   $build_deps = [
     'autoconf-archive',
@@ -39,15 +39,15 @@ class netdata::install inherits netdata {
     ensure_packages( 'jq', {'ensure' => 'present'} )
   }
 
-  exec { "Download netdata-${netdata::release_version}":
-    command => "/usr/bin/wget -qO- ${installation_source} | tar xvz -C /root/",
-    creates => "/root/netdata-${netdata::release_version}",
-    before  => Exec['Install netdata']
+  vcsrepo { '/opt/netdata':
+    ensure   => present,
+    provider => git,
+    source   => $installation_source,
   }
 
   exec { 'Install netdata':
-    command => "/root/netdata-${netdata::release_version}/netdata-installer.sh",
-    cwd     => "/root/netdata-${netdata::release_version}",
+    command => '/opt/netdata/netdata-installer.sh',
+    cwd     => '/opt/netdata',
     creates => '/etc/netdata',
   }
 
