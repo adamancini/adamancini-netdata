@@ -1,2 +1,2 @@
 netdata::service_provider: 'upstart'
-netdata::service_file: 'system/netdata-lsb'
+netdata::service_file: 'system/netdata-lsb.in'
