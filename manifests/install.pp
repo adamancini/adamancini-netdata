@@ -43,9 +43,10 @@ class netdata::install inherits netdata {
     ensure   => present,
     provider => git,
     source   => $installation_source,
+    before   => Exec['Install_netdata'],
   }
 
-  exec { 'Install netdata':
+  exec { 'Install_netdata':
     command => '/opt/netdata/netdata-installer.sh',
     cwd     => '/opt/netdata',
     creates => '/etc/netdata',
