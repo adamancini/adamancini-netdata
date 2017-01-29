@@ -56,8 +56,7 @@ class netdata::install inherits netdata {
     'upstart': {
       file { '/etc/init.d/netdata':
         ensure  => link,
-        source  => '/opt/netdata/system/netdata-lsb',
-        target  => '/etc/init.d/netdata',
+        target  => '/opt/netdata/system/netdata-lsb',
         require => Vcsrepo['/opt/netdata']
       }
     }
