@@ -32,6 +32,9 @@ class netdata::install inherits netdata {
 
   if $netdata::install_dependencies == true {
     ensure_packages( $build_deps, {'ensure' => 'present'} )
+  }
+
+  if $netdata::install_plugin_dependencies == true {
     ensure_packages( $plugin_deps, {'ensure' => 'present'} )
   }
 

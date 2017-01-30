@@ -7,6 +7,7 @@ netdata::custom_registry_enabled: false
 netdata::custom_registry_hostname: ~
 netdata::custom_registry_to_announce: ~
 netdata::install_dependencies: true
+netdata::install_plugin_dependencies: true
 netdata::install_jq: true
 netdata::install_dir_root: ~
 netdata::service_enable: true

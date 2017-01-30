@@ -7,6 +7,7 @@ class netdata (
   Optional[String] $custom_registry_to_announce,
   Boolean $config_manage,
   Boolean $install_dependencies,
+  Boolean $install_plugin_dependencies,
   Boolean $install_jq,
   Optional[String] $install_dir_root,
   Boolean $service_enable,
