@@ -40,10 +40,9 @@ class netdata::install inherits netdata {
     ensure_packages( 'jq', {'ensure' => 'present'} )
   }
 
-  vcsrepo { 'netdata_repo':
+  vcsrepo { $netdata::repo_location:
     ensure   => $netdata::repo_ensure,
     provider => git,
-    path     => $netdata::repo_location,
     source   => $netdata::installation_source,
   }
 
