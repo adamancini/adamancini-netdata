@@ -45,13 +45,13 @@ class netdata::install inherits netdata {
     provider => git,
     path     => $netdata::repo_location,
     source   => $netdata::installation_source,
-    before   => Exec['Install_netdata'],
   }
 
   exec { 'Install_netdata':
     command     => "${netdata::repo_location}/netdata-installer.sh",
     cwd         => $netdata::repo_location,
     creates     => $netdata::config_dir,
-    refreshonly => Vcsrepo[$netdata::repo_location]
+    subscribe   => Vcsrepo['netdata_repo'],
+    refreshonly => true,
   }
 }
