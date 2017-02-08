@@ -50,7 +50,7 @@ class netdata::install inherits netdata {
     command     => "${netdata::repo_location}/netdata-installer.sh",
     cwd         => $netdata::repo_location,
     creates     => $netdata::config_dir,
-    subscribe   => Vcsrepo['netdata_repo'],
+    subscribe   => Vcsrepo[$netdata::repo_location],
     refreshonly => true,
   }
 }
