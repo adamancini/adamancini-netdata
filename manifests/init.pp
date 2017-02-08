@@ -1,4 +1,5 @@
 class netdata (
+  String $ensure
   String $release_version,
   Stdlib::Absolutepath $config_dir,
   Stdlib::Absolutepath $config_file,
@@ -10,6 +11,8 @@ class netdata (
   Boolean $install_plugin_dependencies,
   Boolean $install_jq,
   Optional[String] $install_dir_root,
+  String $installation_source,
+  Optional[String] $repo_location,
   Boolean $service_enable,
   String $service_ensure,
   Boolean $service_manage,

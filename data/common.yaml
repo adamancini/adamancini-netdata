@@ -10,6 +10,9 @@ netdata::install_dependencies: true
 netdata::install_plugin_dependencies: true
 netdata::install_jq: true
 netdata::install_dir_root: ~
+netdata::installation_source: 'https://github.com/firehol/netdata.git'
+netdata::repo_location: '/opt/netdata'
+netdata::repo_ensure: present
 netdata::service_enable: true
 netdata::service_ensure: running
 netdata::service_manage: true
