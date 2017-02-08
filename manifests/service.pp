@@ -37,6 +37,7 @@ class netdata::service inherits netdata {
       enable     => $netdata::service_enable,
       name       => $netdata::service_name,
       provider   => $netdata::service_provider,
+      subscribe  => File['netdata config file'],
       hasstatus  => true,
       hasrestart => true,
     }
