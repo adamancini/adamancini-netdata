@@ -1,5 +1,4 @@
 class netdata (
-  String $ensure
   String $release_version,
   Stdlib::Absolutepath $config_dir,
   Stdlib::Absolutepath $config_file,
