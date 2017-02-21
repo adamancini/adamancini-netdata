@@ -18,14 +18,6 @@ class netdata::service inherits netdata {
           mode   => '0755',
         }
       }
-
-      'systemd': {
-        notify { 'Systemd service file installed automatically': }
-      }
-
-      default: {
-        notify { 'Default is a noop': }
-      }
     }
 
     if ! ($netdata::service_ensure in [ 'running', 'stopped' ]) {
