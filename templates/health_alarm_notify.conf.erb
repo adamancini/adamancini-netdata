@@ -125,7 +125,7 @@ SEND_PUSHOVER="NO"
 #                  "CHAT_ID_1 CHAT_ID_1 ..."
 
 # enable/disable sending telegram messages
-<% if @netdata::alarms_send_telegram -%>
+<% if @netdata::alarms_send_telegram == true -%>
 SEND_TELEGRAM="YES"
 
 # Contact the bot @BotFather to create a new bot and receive a bot token.
