@@ -21,7 +21,7 @@ netdata::service_name: netdata
 netdata::service_provider: ~
 netdata::webserver_manage: true
 netdata::webserver_class: nginx
-netdata::update_with_cron: true
+netdata::update_with_cron: false
 netdata::update_cron_hour: 2
 netdata::update_cron_min: 30
 netdata::update_cron_user: root
