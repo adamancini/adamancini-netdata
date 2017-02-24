@@ -21,7 +21,7 @@ class netdata::config inherits netdata {
   if $netdata::alarms_manage == true {
     file { 'netdata alarms notifications':
       ensure  => present,
-      content => template('netdata/health_alarm_notify.conf.erb'),
+      content => template('netdata/health_alarm_notify.conf.epp'),
       path    => "${netdata::config_dir}/health_alarm_notify.conf",
       owner   => $netdata::service_name,
       group   => $netdata::service_name,

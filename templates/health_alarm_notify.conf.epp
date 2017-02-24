@@ -1,19 +1,6 @@
-# Configuration for alarm notifications
-#
-# This configuration is used by: alarm-notify.sh
-# changes take effect immediately (the next alarm will use them).
-#
-# alarm-notify.sh can send:
-# - e-mails (using the sendmail command),
-# - push notifications to your mobile phone (pushover.net),
-# - messages to your slack team (slack.com),
-# - messages to your telegram chat / group chat (telegram.org)
-#
-# The 'to' line given at netdata alarms defines a *role*, so that many
-# people can be notified for each role.
-#
-# This file is a BASH script itself.
-#
+# This file is managed by puppet
+# DO NOT EDIT
+# Your changes will be lost
 #
 ###############################################################################
 # proxy configuration
@@ -22,8 +9,6 @@
 # via a proxy, set these to your proxy address:
 # export http_proxy="http://10.0.0.1:3128/"
 # export https_proxy="http://10.0.0.1:3128/"
-
-
 ###############################################################################
 # notifications images
 #
@@ -34,23 +19,17 @@
 # of netdata to your web server), set its URL here, to fetch the notification
 # images from it.
 #images_base_url="http://my.public.netdata.server:19999"
-
-
 ###############################################################################
 # external commands
-
 # The full path to the sendmail command.
 # If empty, the system $PATH will be searched for it.
 # If not found, email notifications will be disabled (silently).
 sendmail=""
-
 # The full path of the curl command.
 # If empty, the system $PATH will be searched for it.
 # If not found, pushover, telegram and slack notifications will be
 # silently disabled.
 curl=""
-
-
 ###############################################################################
 # NOTE ABOUT RECIPIENTS
 #
@@ -75,45 +54,35 @@ curl=""
 # notification method (email, pushover, telegram, slack) will be used.
 # To disable a notification, use the recipient called: disabled
 # This works for all notification methods (including the default recipients).
-
-
 ###############################################################################
 # email global notification options
-
 # multiple recipients can be given like this:
 #              "admin1@example.com admin2@example.com ..."
-
 # enable/disable sending emails
-<% if @netdata::alarms_send_email == true -%>
+<% if $netdata::alarms_send_email { -%>
 SEND_EMAIL="YES"
-# if a role recipient is not configured, an email will be send to:
-DEFAULT_RECIPIENT_EMAIL="<%= @netdata::alarms_default_email_recipient %>"
+DEFAULT_RECIPIENT_EMAIL="<%= $netdata::alarms_default_email_recipient %>"
 # to receive only critical alarms, set it to "root|critical"
-<% else -%>
+<% } else { -%>
 SEND_EMAIL="NO"
-<% end -%>
-
-
-
-
+<% } -%>
 ###############################################################################
 # pushover (pushover.net) global notification options
-
 # enable/disable sending pushover notifications
-<% if @netdata::alarms_send_pushover == true -%>
+<% if $netdata::alarms_send_pushover == true { -%>
 SEND_PUSHOVER="YES"
 # if a role's recipients are not configured, a notification will be send to
 # this pushover user token (empty = do not send a notification for unconfigured
 # roles):
-DEFAULT_RECIPIENT_PUSHOVER="<%= @netdata::alarms_default_pushover_recipient %>"
+DEFAULT_RECIPIENT_PUSHOVER="<%= $netdata::alarms_default_pushover_recipient %>"
 # Login to pushover.net to get your pushover app token.
 # You need only one for all your netdata servers (or you can have one for
 # each of your netdata - your call).
 # Without an app token, netdata cannot send pushover notifications.
-PUSHOVER_APP_TOKEN="<%= @netdata::alarms_pushover_app_token %>"
-<% else -%>
+PUSHOVER_APP_TOKEN="<%= $netdata::alarms_pushover_app_token %>"
+<% } else { -%>
 SEND_PUSHOVER="NO"
-<% end -%>
+<% } -%>
 
 ###############################################################################
 # telegram (telegram.org) global notification options
@@ -125,19 +94,19 @@ SEND_PUSHOVER="NO"
 #                  "CHAT_ID_1 CHAT_ID_1 ..."
 
 # enable/disable sending telegram messages
-<% if @netdata::alarms_send_telegram == true -%>
+<% if $netdata::alarms_send_telegram == true { -%>
 SEND_TELEGRAM="YES"
 
 # Contact the bot @BotFather to create a new bot and receive a bot token.
 # Without it, netdata cannot send telegram messages.
-TELEGRAM_BOT_TOKEN="<%= @netdata::alarms_telegram_bot_token %>"
+TELEGRAM_BOT_TOKEN="<%= $netdata::alarms_telegram_bot_token %>"
 
 # If a role's recipients are not configured, a message will be send to
 # this chat id (empty = do not send a notification for unconfigured roles):
-DEFAULT_RECIPIENT_TELEGRAM="<%= @netdata::alarms_default_telegram_recipient %>"
-<% else -%>
+DEFAULT_RECIPIENT_TELEGRAM="<%= $netdata::alarms_default_telegram_recipient %>"
+<% } else { -%>
 SEND_TELEGRAM="NO"
-<% end -%>
+<% } -%>
 
 ###############################################################################
 # slack (slack.com) global notification options
@@ -145,7 +114,7 @@ SEND_TELEGRAM="NO"
 # multiple recipients can be given like this:
 #                  "CHANNEL1 CHANNEL2 ..."
 
-<% if @netdata::alarms_send_slack == true -%>
+<% if $netdata::alarms_send_slack == true { -%>
 # enable/disable sending slack notifications
 SEND_SLACK="YES"
 
@@ -153,15 +122,15 @@ SEND_SLACK="YES"
 # your netdata servers (or you can have one for each of your netdata).
 # Without it, netdata cannot send slack notifications.
 # Get yours from: https://api.slack.com/incoming-webhooks
-SLACK_WEBHOOK_URL="<%= @netdata::alarms_slack_webhook_url %>"
+SLACK_WEBHOOK_URL="<%= $netdata::alarms_slack_webhook_url %>"
 
 # if a role's recipients are not configured, a notification will be send to
 # this slack channel (empty = do not send a notification for unconfigured
 # roles):
-DEFAULT_RECIPIENT_SLACK="<%= @netdata::alarms_default_slack_recipient %>"
-<% else -%>
+DEFAULT_RECIPIENT_SLACK="<%= $netdata::alarms_default_slack_recipient %>"
+<% } else { -%>
 SEND_SLACK="NO"
-<% end -%>
+<% } -%>
 
 ###############################################################################
 # RECIPIENTS PER ROLE
