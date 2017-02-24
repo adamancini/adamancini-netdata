@@ -55,6 +55,7 @@ class netdata::install inherits netdata {
         hour    => $netdata::update_cron_hour,
         minute  => $netdata::update_cron_min,
         user    => $netdata::update_cron_user,
+        weekday => $netdata::update_cron_weekday,
       }
     }
   }
