@@ -27,15 +27,15 @@ netdata::update_cron_min: 30
 netdata::update_cron_weekday: 0
 netdata::update_cron_user: root
 netdata::alarms_manage: true
-netdata::alarms_send_email: YES
+netdata::alarms_send_email: 'YES'
 netdata::alarms_default_email_recipient: root
-netdata::alarms_send_pushover: NO
+netdata::alarms_send_pushover: 'NO'
 netdata::alarms_default_pushover_recipient:
 netdata::alarms_pushover_app_token:
-netdata::alarms_send_telegram: NO
+netdata::alarms_send_telegram: 'NO'
 netdata::alarms_default_telegram_recipient:
 netdata::alarms_telegram_bot_token:
-netdata::alarms_send_slack: NO
+netdata::alarms_send_slack: 'NO'
 netdata::alarms_slack_webhook_url:
 netdata::alarms_default_slack_recipient:
 
