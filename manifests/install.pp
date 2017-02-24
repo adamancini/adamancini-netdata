@@ -56,6 +56,7 @@ class netdata::install inherits netdata {
         minute  => $netdata::update_cron_min,
         user    => $netdata::update_cron_user,
         weekday => $netdata::update_cron_weekday,
+        require => Vcsrepo[$netdata::repo_location],
       }
     }
   }
@@ -71,9 +72,8 @@ class netdata::install inherits netdata {
   }
 
   exec { 'Install netdata':
-    command     => "${netdata::repo_location}/netdata-installer.sh",
-    cwd         => $netdata::repo_location,
-    creates     => $netdata::config_dir,
-    refreshonly => true,
+    command => "${netdata::repo_location}/netdata-installer.sh",
+    cwd     => $netdata::repo_location,
+    creates => $netdata::config_dir,
   }
 }

@@ -1,17 +1,14 @@
 # This file is managed by puppet
 # DO NOT EDIT
 # Your changes will be lost
-#
 ###############################################################################
 # proxy configuration
-#
 # If you need to send curl based notifications (pushover, slack, telegram)
 # via a proxy, set these to your proxy address:
 # export http_proxy="http://10.0.0.1:3128/"
 # export https_proxy="http://10.0.0.1:3128/"
 ###############################################################################
 # notifications images
-#
 # Images in notifications need to be downloaded from an Internet facing site.
 # To allow notification providers fetch the icons/images, by default we set
 # the URL of the global public netdata registry.
