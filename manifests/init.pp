@@ -26,6 +26,7 @@ class netdata (
   Optional[String] $update_cron_user,
   Optional[String] $service_provider,
   Optional[Hash] $options,
+  Optional[Boolean] $alarms_manage,
   Optional[Boolean] $alarms_send_email,
   Optional[String] $alarms_default_email_recipient,
   Optional[Boolean] $alarms_send_pushover,

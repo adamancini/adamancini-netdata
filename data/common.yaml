@@ -26,6 +26,7 @@ netdata::update_cron_hour: 2
 netdata::update_cron_min: 30
 netdata::update_cron_weekday: 0
 netdata::update_cron_user: root
+netdata::alarms_manage: true
 netdata::alarms_send_email: YES
 netdata::alarms_default_email_recipient: root
 netdata::alarms_send_pushover: NO
