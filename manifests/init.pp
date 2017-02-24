@@ -9,6 +9,7 @@ class netdata (
   Boolean $install_dependencies,
   Boolean $install_plugin_dependencies,
   Boolean $install_jq,
+  Boolean $install_from_git,
   Optional[String] $install_dir_root,
   String $installation_source,
   Optional[String] $repo_location,
@@ -20,6 +21,17 @@ class netdata (
   String $service_file,
   Optional[String] $service_provider,
   Optional[Hash] $options,
+  Optional[Boolean] $alarms_send_email,
+  Optional[String] $alarms_default_email_recipient,
+  Optional[Boolean] $alarms_send_pushover,
+  Optional[String] $alarms_default_pushover_recipient,
+  Optional[String] $alarms_pushover_app_token,
+  Optional[Boolean] $alarms_send_telegram,
+  Optional[String] $alarms_default_telegram_recipient,
+  Optional[String] $alarms_telegram_bot_token,
+  Optional[Boolean] $alarms_send_slack,
+  Optional[String] $alarms_slack_webhook_url,
+  Optional[String] $alarms_default_slack_recipient,
   ) {
 
   contain netdata::install
