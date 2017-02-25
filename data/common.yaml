@@ -10,6 +10,7 @@ netdata::install_dependencies: true
 netdata::install_plugin_dependencies: true
 netdata::install_jq: true
 netdata::install_dir_root: ~
+netdata::install_from_git: true
 netdata::installation_source: 'https://github.com/firehol/netdata.git'
 netdata::repo_location: '/opt/netdata'
 netdata::repo_ensure: present
@@ -20,6 +21,23 @@ netdata::service_name: netdata
 netdata::service_provider: ~
 netdata::webserver_manage: true
 netdata::webserver_class: nginx
+netdata::update_with_cron: false
+netdata::update_cron_hour: 2
+netdata::update_cron_min: 30
+netdata::update_cron_weekday: 0
+netdata::update_cron_user: root
+netdata::alarms_manage: true
+netdata::alarms_send_email: true
+netdata::alarms_default_email_recipient: root
+netdata::alarms_send_pushover: false
+netdata::alarms_default_pushover_recipient:
+netdata::alarms_pushover_app_token:
+netdata::alarms_send_telegram: false
+netdata::alarms_default_telegram_recipient:
+netdata::alarms_telegram_bot_token:
+netdata::alarms_send_slack: false
+netdata::alarms_slack_webhook_url:
+netdata::alarms_default_slack_recipient:
 
 lookup_options:
   netdata::options:
