@@ -7,7 +7,7 @@ class netdata::config inherits netdata {
       path   => $netdata::config_file,
       owner  => $netdata::service_name,
       group  => $netdata::service_name,
-      mode   => '0664',
+      mode   => '0660',
     }
 
     validate_hash($netdata::options)
@@ -25,7 +25,7 @@ class netdata::config inherits netdata {
       path    => "${netdata::config_dir}/health_alarm_notify.conf",
       owner   => $netdata::service_name,
       group   => $netdata::service_name,
-      mode    => '0755',
+      mode    => '0660',
     }
   }
 }
