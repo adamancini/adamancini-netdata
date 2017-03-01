@@ -42,38 +42,68 @@ class netdata::install inherits netdata {
 
   if $netdata::install_from_git == true {
 
-    vcsrepo { $netdata::repo_location:
+    $netdata_installer_path = "${netdata::source_prefix}/netdata/netdata-installer.sh"
+
+    vcsrepo { "netdata_git":
       ensure   => $netdata::repo_ensure,
+      path     => "${netdata::source_prefix}/netdata",
       provider => git,
-      source   => $netdata::installation_source,
+      source   => $netdata::git_repo,
       before   => Exec['Install netdata'],
     }
 
     if $netdata::update_with_cron == true {
       cron { 'netdata-updater.sh':
-        command => "${netdata::repo_location}/netdata-updater.sh",
+        command => "${netdata::source_prefix}/netdata/netdata-updater.sh",
         hour    => $netdata::update_cron_hour,
         minute  => $netdata::update_cron_min,
         user    => $netdata::update_cron_user,
         weekday => $netdata::update_cron_weekday,
-        require => Vcsrepo[$netdata::repo_location],
+        require => Vcsrepo['netdata_git'],
       }
     }
   }
-  else {
+  else { # install from package tarball
 
     $installation_source = "https://github.com/firehol/netdata/releases/download/v${netdata::release_version}/netdata-${netdata::release_version}.tar.gz"
+    $netdata_installer_path = "${netdata::source_prefix}/netdata-${netdata::release_version}/netdata-installer.sh"
 
     exec { "Download netdata-${netdata::release_version}":
-      command => "/usr/bin/wget -qO- ${installation_source} | tar xvz -C /root/",
-      creates => "/root/netdata-${netdata::release_version}",
-      before  => Exec['Install netdata']
+      command => "/usr/bin/wget -qO- ${installation_source} | tar xvz -C ${netdata::source_prefix}",
+      creates => "${netdata::source_prefix}/netdata-${netdata::release_version}",
+      notify  => Exec['Install netdata']
     }
   }
 
   exec { 'Install netdata':
-    command => "${netdata::repo_location}/netdata-installer.sh",
-    cwd     => $netdata::repo_location,
-    creates => $netdata::config_dir,
+    command     => $netdata_installer_path,
+    refreshonly => true,
+    cwd         => "${netdata::source_prefix}/netdata",
+    creates     => $netdata::config_dir,
+  }
+
+  case $::facts['service_provider'] {
+    'systemd': {
+      # systemd handled automatically
+    }
+    'upstart': {
+      exec { 'Install netdata init file':
+        command     => "cp ${netdata::source_prefix}/netdata/${netdata::service_file} ./netdata",
+        cwd         => '/etc/init.d/',
+        creates     => '/etc/init.d/netdata',
+        before      => File['/etc/init.d/netdata'],
+        subscribe   => Exec['Install netdata'],
+        refreshonly => true,
+      }
+      file { '/etc/init.d/netdata':
+        ensure => present,
+        owner  => 'root',
+        group  => 'root',
+        mode   => '0750',
+      }
+    }
+    default: {
+      fail('Unsupported init system')
+    }
   }
 }
