@@ -1,7 +1,7 @@
-class netdata::health::disks inherits netdata ( ) {
+class netdata::health::disks inherits netdata {
 
   if netdata::health_disks_manage == true {
-    file {"${netdata::config_dir}/health.d/disks.conf":
+    file { "${netdata::config_dir}/health.d/disks.conf":
       ensure  => present,
       owner   => 'netdata',
       group   => 'netdata',

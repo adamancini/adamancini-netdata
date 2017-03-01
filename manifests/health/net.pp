@@ -1,7 +1,7 @@
-class netdata::health::net inherits netdata ( ) {
+class netdata::health::net inherits netdata {
 
   if netdata::health_net_manage == true {
-    file {"${netdata::config_dir}/health.d/net.conf":
+    file { "${netdata::config_dir}/health.d/net.conf":
       ensure  => present,
       owner   => 'netdata',
       group   => 'netdata',
