@@ -10,7 +10,7 @@ families: *
    every: 10s
     warn: $this > (($status >= $WARNING)  ? ($update_every) : ( 5 * $update_every))
     crit: $this > (($status == $CRITICAL) ? ($update_every) : (60 * $update_every))
-   delay: up 5m down 5m multiplier 1.5 max 1h
+   delay: up 2m down 5m multiplier 1.5 max 1h
     info: number of seconds since the last successful data collection of the mount point
       to: sysadmin
 
@@ -23,7 +23,7 @@ families: *
    every: 10s
     warn: $this > (($status >= $WARNING)  ? ($update_every) : ( 5 * $update_every))
     crit: $this > (($status == $CRITICAL) ? ($update_every) : (60 * $update_every))
-   delay: up 5m down 5m multiplier 1.5 max 1h
+   delay: up 2m down 5m multiplier 1.5 max 1h
     info: number of seconds since the last successful data collection of the block device
       to: sysadmin
 
