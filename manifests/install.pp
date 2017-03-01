@@ -40,11 +40,15 @@ class netdata::install inherits netdata {
     ensure_packages( 'jq', {'ensure' => 'present'} )
   }
 
+  if $netdata::install_firehol == true {
+    ensure_packages( 'firehol', {'ensure' => 'present'} )
+  }
+
   if $netdata::install_from_git == true {
 
     $netdata_installer_path = "${netdata::source_prefix}/netdata/netdata-installer.sh"
 
-    vcsrepo { "netdata_git":
+    vcsrepo { 'netdata_git':
       ensure   => $netdata::repo_ensure,
       path     => "${netdata::source_prefix}/netdata",
       provider => git,
@@ -80,6 +84,14 @@ class netdata::install inherits netdata {
     refreshonly => true,
     cwd         => "${netdata::source_prefix}/netdata",
     creates     => $netdata::config_dir,
+  }
+
+  file { $netdata::config_dir:
+    ensure => directory,
+    owner  => 'netdata',
+    group  => 'netdata',
+    mode   => '0775',
+    after  => Exec['Install netdata'],
   }
 
   case $::facts['service_provider'] {
