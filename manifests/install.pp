@@ -87,11 +87,11 @@ class netdata::install inherits netdata {
   }
 
   file { $netdata::config_dir:
-    ensure => directory,
-    owner  => 'netdata',
-    group  => 'netdata',
-    mode   => '0775',
-    after  => Exec['Install netdata'],
+    ensure  => directory,
+    owner   => 'netdata',
+    group   => 'netdata',
+    mode    => '0775',
+    require => Exec['Install netdata'],
   }
 
   case $::facts['service_provider'] {
