@@ -8,6 +8,7 @@ class netdata::health::disks inherits netdata {
       mode    => '0660',
       content => template('netdata/health.d/disks.conf.erb'),
       notify  => Exec['netdata-restart-alarms'],
+      require => File[$netdata::config_dir],
     }
   }
 }
