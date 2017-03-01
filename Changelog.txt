@@ -4,3 +4,4 @@ Changelog
 
 0.0.2: Start work on custom facts for puppet, so puppet users can know what charts are available on the node.  e.g. to make custom dashboards.
 Start basic support for setting alarms/health notifications
+Fix license to GPLv3
