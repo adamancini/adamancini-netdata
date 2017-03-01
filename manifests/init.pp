@@ -38,11 +38,14 @@ class netdata (
   Optional[Boolean] $alarms_send_slack,
   Optional[String] $alarms_slack_webhook_url,
   Optional[String] $alarms_default_slack_recipient,
+  Optional[Boolean] $health_disks_manage,
   ) {
 
   contain netdata::install
   contain netdata::config
   contain netdata::service
+  contain netdata::health::disks
+  contain netdata::health::net
 
   Class['::netdata::install'] ->
   Class['::netdata::config'] ~>
