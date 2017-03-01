@@ -38,6 +38,8 @@ netdata::alarms_telegram_bot_token:
 netdata::alarms_send_slack: false
 netdata::alarms_slack_webhook_url:
 netdata::alarms_default_slack_recipient:
+netdata::health_disks_manage: true
+netdata::health_net_manage: true
 
 lookup_options:
   netdata::options:

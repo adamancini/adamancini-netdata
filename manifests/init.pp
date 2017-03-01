@@ -39,6 +39,7 @@ class netdata (
   Optional[String] $alarms_slack_webhook_url,
   Optional[String] $alarms_default_slack_recipient,
   Optional[Boolean] $health_disks_manage,
+  Optional[Boolean] $health_net_manage,
   ) {
 
   contain netdata::install
