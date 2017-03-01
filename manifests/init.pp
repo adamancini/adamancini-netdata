@@ -45,10 +45,7 @@ class netdata (
   contain netdata::install
   contain netdata::config
   contain netdata::service
-  contain netdata::health::disks
-  contain netdata::health::net
 
   Class['::netdata::install'] ->
-  Class['::netdata::config'] ~>
-  Class['::netdata::service']
+  Class['::netdata::config']
 }
