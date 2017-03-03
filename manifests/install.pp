@@ -53,7 +53,7 @@ class netdata::install inherits netdata {
       path     => "${netdata::source_prefix}/netdata",
       provider => git,
       source   => $netdata::git_repo,
-      before   => Exec['Install netdata'],
+      notify   => Exec['Install netdata'],
     }
 
     if $netdata::update_with_cron == true {
