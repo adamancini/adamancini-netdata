@@ -83,7 +83,6 @@ class netdata::install inherits netdata {
     command     => $netdata_installer_path,
     refreshonly => true,
     cwd         => "${netdata::source_prefix}/netdata",
-    creates     => $netdata::config_dir,
   }
 
   file { $netdata::config_dir:
