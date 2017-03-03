@@ -99,7 +99,7 @@ class netdata::install inherits netdata {
     }
     'upstart': {
       exec { 'Install netdata init file':
-        command     => "cp ${netdata::source_prefix}/netdata/${netdata::service_file} ./netdata",
+        command     => "cp ${netdata::source_prefix}/netdata/system/${netdata::service_file} ./netdata",
         cwd         => '/etc/init.d/',
         creates     => '/etc/init.d/netdata',
         before      => File['/etc/init.d/netdata'],
