@@ -1,2 +1,2 @@
 netdata::service_provider: 'systemd'
-netdata::service_file: 'system/netdata.service.in'
+netdata::service_file: 'netdata.service'
