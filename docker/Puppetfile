@@ -1,0 +1,5 @@
+mod 'puppetlabs/stdlib'
+mod 'puppetlabs/inifile'
+mod 'adamancini/netdata'
+	:git => 'https://adamancini@bitbucket.org/adamancini/adamancini-netdata.git',
+	:branch => 'dev'

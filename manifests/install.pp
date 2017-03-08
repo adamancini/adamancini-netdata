@@ -40,16 +40,20 @@ class netdata::install inherits netdata {
     ensure_packages( 'jq', {'ensure' => 'present'} )
   }
 
+  if $netdata::install_firehol == true {
+    ensure_packages( 'firehol', {'ensure' => 'present'} )
+  }
+
   if $netdata::install_from_git == true {
 
     $netdata_installer_path = "${netdata::source_prefix}/netdata/netdata-installer.sh"
 
-    vcsrepo { "netdata_git":
+    vcsrepo { 'netdata_git':
       ensure   => $netdata::repo_ensure,
       path     => "${netdata::source_prefix}/netdata",
       provider => git,
       source   => $netdata::git_repo,
-      before   => Exec['Install netdata'],
+      notify   => Exec['Install netdata'],
     }
 
     if $netdata::update_with_cron == true {
@@ -79,7 +83,14 @@ class netdata::install inherits netdata {
     command     => $netdata_installer_path,
     refreshonly => true,
     cwd         => "${netdata::source_prefix}/netdata",
-    creates     => $netdata::config_dir,
+    before      => File[$netdata::config_dir],
+  }
+
+  file { $netdata::config_dir:
+    ensure => directory,
+    owner  => 'netdata',
+    group  => 'netdata',
+    mode   => '0775',
   }
 
   case $::facts['service_provider'] {
@@ -88,7 +99,7 @@ class netdata::install inherits netdata {
     }
     'upstart': {
       exec { 'Install netdata init file':
-        command     => "cp ${netdata::source_prefix}/netdata/${netdata::service_file} ./netdata",
+        command     => "cp ${netdata::source_prefix}/netdata/system/${netdata::service_file} ./netdata",
         cwd         => '/etc/init.d/',
         creates     => '/etc/init.d/netdata',
         before      => File['/etc/init.d/netdata'],
